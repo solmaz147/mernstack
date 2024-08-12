@@ -1,4 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+import { clearUser } from "../features/userSlice"
+import { userApi } from "./userApi"
 
 export const authApi = createApi({
     reducerPath:"authApi",
@@ -42,7 +44,7 @@ export const authApi = createApi({
 
                 }
                 catch(err){
-                    console.log("unpredictable error")
+                    console.log(err)
                 }
             }
 

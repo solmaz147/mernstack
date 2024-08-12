@@ -10,7 +10,7 @@ export const userApi = createApi({
             transformResponse:(result)=>result.user,
              async onQueryStarted(args,{dispatch,queryFulfilled}){
                 try {
-                    const {data} =await queryFulfilled()
+                    const {data} =await queryFulfilled
                     dispatch(setUser(data))
                     dispatch(setIsAuthenticated(true))
 

@@ -22,7 +22,7 @@ const Header = () => {
  useEffect(()=>{
   refetch();
   setTimeout(()=>setIsLoading(false),500);
-  navigate('/login')
+  // navigate('/login')
 
 },[dispatch,isAuthenticated,navigate]);
 
@@ -31,8 +31,8 @@ const Header = () => {
 const logoutHandler = async() => {
      try{
       await logout().unwrap();
-      await dispatch(clearUser());
-     await navigate('/login');
+      dispatch(clearUser());
+      navigate('/login');
       setDropdownOpen(false)
      }
      catch(err){
@@ -69,11 +69,10 @@ const logoutHandler = async() => {
       </div>
     
       <div className="mt-4 md:mt-0 text-center relative">
-        { !isLoading && isAuthenticated? (
+        
            
         
-          <div className="relative inline-block text-left">
-          
+          {(!isLoading && isAuthenticated) && <div className="relative inline-block text-left">
             <button
               className="flex items-center text-white focus:outline-none"
               type="button"
@@ -131,11 +130,12 @@ const logoutHandler = async() => {
               </div>
             )}
           </div>
-        ) : isAuthenticated ? ( 
-        <span>Loading...</span>
-       ): (
-            <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link>
-          )}
+          }
+        
+        {isLoading && <span>Loading...</span>}
+       
+        {!isAuthenticated && <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link>}
+          
       </div>
     </nav>
     
