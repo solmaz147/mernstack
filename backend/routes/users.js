@@ -11,4 +11,5 @@ router.put("/password/reset/:token", resetNewPassword )
 router.get("/me",isAuthenticatedUser , getUserProfile )
 router.put("/password/update", isAuthenticatedUser, updatePassword)
 
+
 export default router
