@@ -8,6 +8,7 @@ import {useLogoutMutation} from '../../redux/api/authApi';
 
 
 
+
 const Header = () => {
 
   
@@ -134,7 +135,7 @@ const logoutHandler = async() => {
         
         {isLoading && <span>Loading...</span>}
        
-        {!isAuthenticated && <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link>}
+ { !isAuthenticated && <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link> }
           
       </div>
     </nav>
