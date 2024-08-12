@@ -6,11 +6,11 @@ export const userApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:"/api/v1"}),
     endpoints: (builder)=>({
         getMe: builder.query({
-            query:() => "/me",
+            query: () => "/me",
             transformResponse:(result)=>result.user,
              async onQueryStarted(args,{dispatch,queryFulfilled}){
                 try {
-                    const {data} =await queryFulfilled
+                    const {data} =await queryFulfilled()
                     dispatch(setUser(data))
                     dispatch(setIsAuthenticated(true))
 

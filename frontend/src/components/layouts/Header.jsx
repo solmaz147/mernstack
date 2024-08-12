@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { useGetMeQuery } from '../../redux/api/userApi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
-import {useLazyLogoutQuery} from '../../redux/api/authApi';
+import { clearUser } from '../../redux/features/userSlice';
+import toast from 'react-hot-toast';
+import {useLogoutMutation} from '../../redux/api/authApi';
 
 
 
@@ -10,15 +12,39 @@ const Header = () => {
 
   
   const navigate = useNavigate();
-  const [logout]= useLazyLogoutQuery();
-  const{isLoading} =useGetMeQuery
-  const [dropdownOpen, setDropdownOpen]=useState(false);
-  const {user} = useSelector((state)=> state.auth)
+  const dispatch = useDispatch();
+  const [logout]= useLogoutMutation();
+  const{refetch} =useGetMeQuery()
+  const [isLoading, setIsLoading]=useState(true);
+  const {user,isAuthenticated} = useSelector((state)=> state.auth)
+  const[profileImg, setProfileImg] = useState('https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png')
 
-  const logoutHandler = () => {
-      logout();
-      
-      navigate(0);
+ useEffect(()=>{
+  refetch();
+  setTimeout(()=>setIsLoading(false),500);
+  navigate('/login')
+
+},[dispatch,isAuthenticated,navigate]);
+
+  
+
+const logoutHandler = async() => {
+     try{
+      await logout().unwrap();
+      await dispatch(clearUser());
+     await navigate('/login');
+      setDropdownOpen(false)
+     }
+     catch(err){
+      console.error('Failed to logout',err);
+      toast.error("Logout failed")
+
+     }
+    };
+
+    const[dropdownOpen,setDropdownOpen]= useState(false);
+    const dropdownuAcBagla = ()=> {
+      setDropdownOpen(!dropdownOpen);
     };
  
  
@@ -41,18 +67,23 @@ const Header = () => {
           
         </Link>
       </div>
-
+    
       <div className="mt-4 md:mt-0 text-center relative">
-        {user ? (
+        { !isLoading && isAuthenticated? (
+           
+        
           <div className="relative inline-block text-left">
+          
             <button
               className="flex items-center text-white focus:outline-none"
               type="button"
               id="dropDownMenuButton"
-              aria-expanded={dropdownOpen ? "true" : "false"}
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+             aria-expanded={dropdownOpen ? "true" : "false"}
+              onClick={dropdownuAcBagla}
             >
-              <span>{user?.name}</span>
+              <span className='flex  gap-4'>{user?.name}   <img src={profileImg} className='h-6 bg-white rounded-full'/> </span>
+             
+
               <svg
                 className="ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,17 +131,15 @@ const Header = () => {
               </div>
             )}
           </div>
-        ) : (
-          !isLoading && (
-            <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-              Login
-            </Link>
-          )
-        )}
+        ) : isAuthenticated ? ( 
+        <span>Loading...</span>
+       ): (
+            <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link>
+          )}
       </div>
     </nav>
     
-  )
+  );
 }
 
 export default Header

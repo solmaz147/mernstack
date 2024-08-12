@@ -16,6 +16,8 @@ import Footer from './components/layouts/Footer'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import AuthProtected from './components/AuthProtected'
+import Products from './components/Products'
+
 
 function App() {
 
@@ -27,10 +29,12 @@ function App() {
   <Header />
   <Routes>
   <Route path='/' element={<Home/>} />
-    <Route path='/login' element={<AuthProtected><Login/></AuthProtected>}/>
+    <Route path='/login' element={<AuthProtected><Login/></AuthProtected>} />
     <Route path='/register' element={<AuthProtected><Register/></AuthProtected>} />
     <Route path='/forget/password' element={<ForgotPassword/>} />
     <Route path='/password/reset/:token' element={<ResetPassword/>}/>
+    <Route path='/products' element={<Products/>}/>
+  
 
 
   </Routes>
