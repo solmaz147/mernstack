@@ -20,7 +20,7 @@ export const authorizeRoles = (...roles) => {
     if(!roles.includes(req.user.role)){
         return next(new ErrorHandler(`${req.user.role} cannot access these resourses`),403)
     }
-  next
+    next();
   }
 
 }

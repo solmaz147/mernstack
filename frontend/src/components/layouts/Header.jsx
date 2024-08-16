@@ -100,7 +100,7 @@ const logoutHandler = async() => {
             </button>
             {dropdownOpen && (
               <div
-                className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className="origin-top-right absolute z-50 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="dropDownMenuButton"
@@ -113,7 +113,10 @@ const logoutHandler = async() => {
                   >
                     Dashboard
                   </Link>
-                )}
+                
+
+                )
+                }
                 <Link
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   to="/me/profile"

@@ -12,6 +12,11 @@ export const productApi = createApi({
             query:(id) => `/products/${id}`,
         }),
 
+        getAdminProducts:builder.query({
+            query:()=> '/admin/products',
+            providesTags:["AdminProducts"]
+        }),
+
         newProduct:builder.mutation({
             query: (formData) => ({
                 url:"/admin/newproduct",

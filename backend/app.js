@@ -1,7 +1,11 @@
 import express from "express";
+import path from 'path';
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadsPath = path.join(__dirname, 'uploads')
 
 import dotenv from "dotenv";
 
@@ -20,12 +24,14 @@ connectDatabase();
 
 app.use(express.json());
 app.use(cookieParser())
-
+app.use('/uploads', express.static(uploadsPath));
 
 //bura marshrutlar gelecek
 
 import productRoutes from "./routes/products.js";
 import authRoutes from "./routes/users.js";
+import { fileURLToPath } from "url";
+import { log } from "console";
 
 app.use('/api/v1', productRoutes);
 app.use('/api/v1', authRoutes);

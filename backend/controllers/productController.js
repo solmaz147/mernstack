@@ -4,10 +4,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 export const getProducts =catchAsynchErrors(async(req,res) => {
     const products = await Product.find()
 
-    res.status(200).json({
-        products,
-
-    });
+    res.status(200).json(products);
 });
 
  export const getProductDetails =catchAsynchErrors(async(req,res,next) => {
@@ -40,8 +37,14 @@ res.status(200).json({
 
  export const newProduct =catchAsynchErrors(async(req,res) => {
     req.body.user = req.user._id
+    const productBody = req.body;
+    
+    if (req.files.length){
+        const images = req.files.map(image => ({url: image.path}));
+        productBody.images = images;
+    };
 
-    const product = await Product.create(req.body)
+    const product = await Product.create(productBody);
 
     res.status(201).json({
     product,

@@ -20,14 +20,15 @@ import mongoose  from "mongoose";
   }, 
   
   images: [
-    { ratings: {
-    type: Number,
-    default: 0,
-  },
+    { ratings: 
+      {
+        type: Number,
+        default: 0,
+      },
 
       public_id: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId
+        // required: true,
       },
       url: {
         type: String,
