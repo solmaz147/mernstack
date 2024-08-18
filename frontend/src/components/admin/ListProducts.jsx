@@ -1,5 +1,6 @@
 import React from 'react';
-import {useGetProductsQuery, useGetProductDetailsQuery } from '../../redux/api/productsApi';
+import { Link } from 'react-router-dom';
+import {useGetProductsQuery } from '../../redux/api/productsApi';
 import Productrow from '../Productrow';
 
 
@@ -38,7 +39,10 @@ const ListProducts =()=>{
 
         {products.map(product=><Productrow product={product}/>)}
 
-        
+
+<div className='flex items-center justify-center p-6'>
+         <Link to="/admin/newproduct" className=" p-2 me-4 font-medium text-white bg-blue-500 dark:text-blue-500 hover:underline">Add new product</Link>
+         </div>
     </table>
 </div>
 

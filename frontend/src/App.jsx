@@ -21,6 +21,8 @@ import CreateProduct from './components/admin/CreateProduct'
 import ListProducts from './components/admin/ListProducts'
 import UpdateProduct from './components/admin/UpdateProduct'
 import ProductDetails from './components/ProductDetails'
+import Dashboard from './components/admin/Dashboard'
+
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
     <Route path='/admin/products' element={<ListProducts/>}/>
     <Route path='/admin/product/:id' element={<UpdateProduct/>}/>
     <Route path='/products/:id' element={<ProductDetails/>}/>
+    <Route path='/admin/dashboard' element={<Dashboard/>}/>
 
 
     

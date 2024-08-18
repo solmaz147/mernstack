@@ -59,12 +59,13 @@ const logoutHandler = async() => {
     <nav className="flex flex-col md:flex-row items-center justify-between p-5 bg-pink-300 text-white">
       <div className="flex-shrink-0">
         <Link to="/" className="flex items-center">
-        <h1 className='font-serif font-bold text-pink-700 me-6'> Beautico</h1>
+        <h1 className='font-serif font-bold text-pink-700 me-6'>PINKshop</h1>
 
     
           <img src="https://cdn3.iconfinder.com/data/icons/miscellaneous-236-solid/128/barbie_doll_adorable_beautiful_childhood_fashion-dolls_doll-girl-1024.png" alt="barbiegirl.logo" className="h-6" />
           <img src="https://cdn1.iconfinder.com/data/icons/bootstrap-vol-3/16/hearts-1024.png" alt="" className='h-6' />
           <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/shopping_bag-1024.png" alt="SHOPPING" className='h-6'/>
+         
           
         </Link>
       </div>
@@ -74,6 +75,7 @@ const logoutHandler = async() => {
            
         
           {(!isLoading && isAuthenticated) && <div className="relative inline-block text-left">
+          
             <button
               className="flex items-center text-white focus:outline-none"
               type="button"
@@ -106,17 +108,30 @@ const logoutHandler = async() => {
                 aria-labelledby="dropDownMenuButton"
               >
                 {user?.role === "admin" && (
-                  <Link
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    to="/admin/dashboard"
-                    role="menuitem"
-                  >
-                    Dashboard
-                  </Link>
-                
 
-                )
+           <Link
+           className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            to="/admin/dashboard"
+               role="menuitem"
+              >
+              Dashboard
+             </Link>
+          )
+       
                 }
+
+{user?.role === "admin" && (
+
+<Link
+className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+ to="/admin/products"
+    role="menuitem"
+   >
+   Products list
+  </Link>
+)
+
+     }
                 <Link
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   to="/me/profile"

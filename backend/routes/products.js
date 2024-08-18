@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/products',isAuthenticatedUser, getProducts);
 router.post('/admin/newproduct', isAuthenticatedUser, authorizeRoles("admin"), upload.array("images", 5), newProduct);
-router.delete('/admin/product/:id', isAuthenticatedUser, authorizeRoles("admin"), deleteProduct);
+router.delete('/admin/deletepr/:id', isAuthenticatedUser, authorizeRoles("admin"), deleteProduct);
 router.get('/products/:id',isAuthenticatedUser, getProductDetails);
 router.put('/admin/product/:id', isAuthenticatedUser, authorizeRoles("admin"), upload.array("images", 5), updateProduct);
 
