@@ -1,10 +1,11 @@
-import React, {useState,useEffect} from 'react';
+ import React, {useState,useEffect} from 'react';
 import { useGetMeQuery } from '../../redux/api/userApi';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
 import { clearUser } from '../../redux/features/userSlice';
 import toast from 'react-hot-toast';
 import {useLogoutMutation} from '../../redux/api/authApi';
+import { clearCart } from '../../redux/features/cartSlice';
 
 
 
@@ -15,7 +16,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [logout]= useLogoutMutation();
-  const{refetch} =useGetMeQuery()
+  const{refetch} =useGetMeQuery();
   const [isLoading, setIsLoading]=useState(true);
   const {user,isAuthenticated} = useSelector((state)=> state.auth)
   const[profileImg, setProfileImg] = useState('https://cdn0.iconfinder.com/data/icons/cryptocurrency-137/128/1_profile_user_avatar_account_person-132-1024.png')
@@ -34,7 +35,8 @@ const logoutHandler = async() => {
       await logout().unwrap();
       dispatch(clearUser());
       navigate('/login');
-      setDropdownOpen(false)
+      setDropdownOpen(false);
+      dispatch(clearCart());
      }
      catch(err){
       console.error('Failed to logout',err);
@@ -59,12 +61,12 @@ const logoutHandler = async() => {
     <nav className="flex flex-col md:flex-row items-center justify-between p-5 bg-pink-300 text-white">
       <div className="flex-shrink-0">
         <Link to="/" className="flex items-center">
-        <h1 className='font-serif font-bold text-pink-700 me-6'>PINKshop</h1>
+        <h1 className='font-serif font-bold text-pink-500 me-6'>PINKHOP</h1>
 
     
           <img src="https://cdn3.iconfinder.com/data/icons/miscellaneous-236-solid/128/barbie_doll_adorable_beautiful_childhood_fashion-dolls_doll-girl-1024.png" alt="barbiegirl.logo" className="h-6" />
           <img src="https://cdn1.iconfinder.com/data/icons/bootstrap-vol-3/16/hearts-1024.png" alt="" className='h-6' />
-          <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/shopping_bag-1024.png" alt="SHOPPING" className='h-6'/>
+          
          
           
         </Link>
@@ -74,7 +76,8 @@ const logoutHandler = async() => {
         
            
         
-          {(!isLoading && isAuthenticated) && <div className="relative inline-block text-left">
+          {(!isLoading && isAuthenticated) && <div className="relative  flex text-left">
+           <Link to="/cart"> <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/shopping_bag-1024.png" alt="SHOPPING" className='h-6 me-8'/> </Link>
           
             <button
               className="flex items-center text-white focus:outline-none"
@@ -83,7 +86,7 @@ const logoutHandler = async() => {
              aria-expanded={dropdownOpen ? "true" : "false"}
               onClick={dropdownuAcBagla}
             >
-              <span className='flex  gap-4'>{user?.name}   <img src={profileImg} className='h-6 bg-white rounded-full'/> </span>
+              <span className='flex text-pink-600 font-mono gap-4'>{user?.name}   <img src={profileImg} className='h-6 bg-white rounded-full'/> </span>
              
 
               <svg
@@ -102,7 +105,7 @@ const logoutHandler = async() => {
             </button>
             {dropdownOpen && (
               <div
-                className="origin-top-right absolute z-50 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className="origin-top-right absolute z-50 right-0 mt-8 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="dropDownMenuButton"
@@ -134,7 +137,7 @@ className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
      }
                 <Link
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  to="/me/profile"
+                  to="/me"
                   role="menuitem"
                 >
                   Profile

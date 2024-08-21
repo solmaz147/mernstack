@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetProductDetailsQuery } from '../redux/api/productsApi';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../redux/features/cartSlice';
+import Loader from './layouts/Loader';
 
 const ProductDetails = () => {
   const { id } = useParams(); // Extract product ID from URL
-
   const { data: productDetails, error, isLoading } = useGetProductDetailsQuery(id);
-
   const [count, setCount] = useState(0);
   const [availableStock, setAvailableStock] = useState(0);
+  const dispatch = useDispatch();
 
-  // Update availableStock when productDetails changes
   useEffect(() => {
     if (productDetails) {
       setAvailableStock(productDetails.product.stock);
@@ -20,8 +21,8 @@ const ProductDetails = () => {
 
   const increase = () => {
     if (availableStock > 0) {
-      setCount(count + 1);
       setAvailableStock(availableStock - 1);
+      setCount(count + 1);
     } else {
       Swal.fire({
         icon: 'error',
@@ -38,7 +39,31 @@ const ProductDetails = () => {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  const handleAddToCart = () => {
+    if (count > 0) {
+      const productToAdd = {
+        id: productDetails.product._id,
+        name: productDetails.product.name,
+        price: productDetails.product.price,
+        quantity: count,
+        imageUrl: productDetails.product.images[0].url,
+      };
+      dispatch(addItem(productToAdd));
+      Swal.fire({
+        icon: 'success',
+        title: 'Added to Cart',
+        text: 'Product has been added to your cart.',
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'No Quantity Selected',
+        text: 'Please select the quantity you want to add.',
+      });
+    }
+  };
+
+  if (isLoading) return <div className='flex h-screen justify-center align-middle'><Loader/></div>
   if (error) return <p>Error loading product details: {error.message}</p>;
   if (!productDetails) return <p>No product found</p>;
 
@@ -58,26 +83,7 @@ const ProductDetails = () => {
           />
         </div>
         <div className="flex justify-start mt-5">
-         
-
-<div class="flex items-center">
-    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-    </svg>
-    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-    </svg>
-    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-    </svg>
-    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-    </svg>
-    <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-    </svg>
-</div>
-
+          {/* Rating */}
         </div>
       </div>
 
@@ -90,9 +96,6 @@ const ProductDetails = () => {
         <div className="flex items-center">
           <div className="flex text-yellow-500">
             {/* Display stars based on ratings if available */}
-            {[...Array(5)].map((_, index) => (
-              <i key={index} className={`fa fa-star ${index < productDetails.product.rating ? 'text-yellow-500' : 'text-gray-300'}`}></i>
-            ))}
           </div>
           <span id="no-of-reviews" className="ml-2">({productDetails.product.reviews.length} Reviews)</span>
         </div>
@@ -114,7 +117,8 @@ const ProductDetails = () => {
           type="button"
           id="cart_btn"
           className="btn btn-primary px-4 py-2 ml-4 bg-blue-500 text-white rounded"
-          disabled={availableStock <= 0} // Disable button if out of stock
+          disabled={availableStock < 0} // Disable button if out of stock
+          onClick={handleAddToCart} // Add to cart handler
         >
           Add to Cart
         </button>
@@ -147,5 +151,6 @@ const ProductDetails = () => {
 }
 
 export default ProductDetails;
+
 
 

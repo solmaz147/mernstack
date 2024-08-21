@@ -160,14 +160,15 @@ const UpdateProduct = () => {
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Existing Images</label>
                         <div className="flex flex-wrap gap-4 mt-2">
-                            {existingImages.map((image, index) => (
-                                <img
+                            {existingImages.map((image, index) => {
+                                console.log(image);
+                                return <img
                                     key={index}
-                                    src={image} // Adjust based on how you store/display images
+                                    src={'http://localhost:3002/' + image.url} // Adjust based on how you store/display images
                                     alt={`Existing image ${index + 1}`}
                                     className="w-24 h-24 object-cover rounded-md border border-gray-300"
                                 />
-                            ))}
+                            })}
                         </div>
                     </div>
                 )}
