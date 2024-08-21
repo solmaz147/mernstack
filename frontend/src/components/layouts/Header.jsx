@@ -86,7 +86,7 @@ const logoutHandler = async() => {
              aria-expanded={dropdownOpen ? "true" : "false"}
               onClick={dropdownuAcBagla}
             >
-              <span className='flex text-pink-600 font-mono gap-4'>{user?.name}   <img src={profileImg} className='h-6 bg-white rounded-full'/> </span>
+              <span className='flex text-pink-600 font-mono gap-4'>{user?.name}   <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} className='h-6 bg-white rounded-full'/> </span>
              
 
               <svg

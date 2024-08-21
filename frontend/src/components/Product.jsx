@@ -7,13 +7,13 @@ const Product = ({ product }) => {
     <Link to={"/products/" + product._id}>
       <div className="bg-white border border-gray-200 hover:border-gray-700 hover:scale-105 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
         <div className="flex justify-center items-center bg-white">
-          <a href="#">
+          <div>
             <img
               className="rounded-t-lg h-60 w-max "
               src={"http://localhost:3002/" + product.images[0].url}
               alt={product.name}
             />
-          </a>
+          </div>
         </div>
         <div className="p-5 bg-pink-100 ps-6">
           <button>

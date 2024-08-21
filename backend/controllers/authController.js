@@ -135,3 +135,13 @@ export const updatePassword = catchAsynchErrors(async(req,res,next)=>{
     })
 
 })
+
+export const updateAvatar = catchAsynchErrors(async (req, res, next) => {
+    const user = await User.findById(req?.user?._id);
+
+    user.avatar.url = req.file.path
+    
+    await user.save();
+
+    res.status(201).json({imageUrl: req.file.path});
+});

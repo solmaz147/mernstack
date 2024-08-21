@@ -1,5 +1,6 @@
 import express from "express"
-import {loginUser, register,logoutUser, forgetPassword, resetNewPassword,getUserProfile, updatePassword} from "../controllers/authController.js"
+import {upload} from '../utils/fileUpload.js';
+import {loginUser, register,logoutUser, forgetPassword, resetNewPassword,getUserProfile, updatePassword, updateAvatar} from "../controllers/authController.js"
 import {isAuthenticatedUser} from "../middleware/auth.js"
 const router = express.Router()
 
@@ -10,6 +11,7 @@ router.post("/forget/password",forgetPassword)
 router.put("/password/reset/:token", resetNewPassword )
 router.get("/me",isAuthenticatedUser , getUserProfile )
 router.put("/password/update", isAuthenticatedUser, updatePassword)
+router.put("/avatar", isAuthenticatedUser, upload.single('profileImage') ,updateAvatar)
 
 
 export default router
