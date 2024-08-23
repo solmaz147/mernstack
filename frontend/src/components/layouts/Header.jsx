@@ -49,7 +49,18 @@ const logoutHandler = async() => {
     const dropdownuAcBagla = ()=> {
       setDropdownOpen(!dropdownOpen);
     };
- 
+    const handleProfileClick = () => {
+      setDropdownOpen(false);
+    };
+    
+    const handleAdminDashboardClick = () => {
+      setDropdownOpen(false);
+    };
+    
+    const handleProductsListClick = () => {
+      setDropdownOpen(false);
+    };
+    
  
 
   
@@ -61,7 +72,7 @@ const logoutHandler = async() => {
     <nav className="flex flex-col md:flex-row items-center justify-between p-5 bg-pink-300 text-white">
       <div className="flex-shrink-0">
         <Link to="/" className="flex items-center">
-        <h1 className='font-serif font-bold text-pink-500 me-6'>PINKHOP</h1>
+        <h1 className='font-poppins font-semibold text-pink-500 me-6'>PINKHOP</h1>
 
     
           <img src="https://cdn3.iconfinder.com/data/icons/miscellaneous-236-solid/128/barbie_doll_adorable_beautiful_childhood_fashion-dolls_doll-girl-1024.png" alt="barbiegirl.logo" className="h-6" />
@@ -116,6 +127,7 @@ const logoutHandler = async() => {
            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
             to="/admin/dashboard"
                role="menuitem"
+               onClick ={handleAdminDashboardClick}
               >
               Dashboard
              </Link>
@@ -129,6 +141,7 @@ const logoutHandler = async() => {
 className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
  to="/admin/products"
     role="menuitem"
+    onClick={handleProductsListClick}
    >
    Products list
   </Link>
@@ -139,6 +152,7 @@ className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   to="/me"
                   role="menuitem"
+                  onClick={handleProfileClick}
                 >
                   Profile
                 </Link>

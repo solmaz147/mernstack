@@ -71,7 +71,7 @@ const ProductDetails = () => {
   const stockStatusClass = availableStock > 0 ? 'text-green-500' : 'text-red-500';
 
   return (
-    <div className="flex flex-col lg:flex-row justify-around p-5">
+    <div className="flex flex-col lg:flex-row justify-around p-5 font-poppins">
       <div className="w-full lg:w-1/2 flex flex-col items-center">
         <div className="p-3">
           <img

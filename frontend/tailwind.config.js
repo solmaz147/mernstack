@@ -12,8 +12,10 @@ export default {
         '1/2': '50%',
         '3/4': '75%',
         'full': '100%',
-        
-      }
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [require('flowbite/plugin')],

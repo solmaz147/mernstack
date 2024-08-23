@@ -72,11 +72,11 @@ const Profile = () => {
         </h6>
         <div className='flex justify-center my-6'>
           <h5 className='font-bold'>
-            Avatar: <img src={profileImg} alt="Profile" className='h-14' />
+            Avatar: <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} alt="Profile" className='h-14' />
           </h5>
         </div>
         <div className='flex flex-col justify-center'>
-          <input
+          <input 
             type='file'
             accept='image/*'
             onChange={handleFileChange}
