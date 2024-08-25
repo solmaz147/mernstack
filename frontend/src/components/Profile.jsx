@@ -116,20 +116,20 @@ const Profile = () => {
         <div className='flex justify-center'>
           <h1 className='text-3xl font-bold mb-8 text-stone-500'>Your Profile:</h1>
         </div>
-        <h6 className='font-bold my-4'>
-          Name: <span className='font-normal'> {data?.name || 'N/A'} </span>
+        <h6 className='font-bold my-4 text-stone-500' >
+          Name: <span className='font-normal text-black'> {data?.name || 'N/A'} </span>
         </h6>
-        <h6 className='font-bold'>
-          Email: <span className='font-normal'> {data?.email || 'N/A'} </span>
+        <h6 className='font-bold text-stone-500'>
+          Email: <span className='font-normal text-black'> {data?.email || 'N/A'} </span>
         </h6>
-        <h6 className='font-bold my-4'>
-          Role: <span className='font-normal'> {data?.role || 'N/A'} </span>
+        <h6 className='font-bold my-4 text-stone-500'>
+          Role: <span className='font-normal text-black'> {data?.role || 'N/A'} </span>
         </h6>
-        <h6 className='font-bold'>
-          ID: <span className='font-normal'> {data?._id || 'N/A'} </span>
+        <h6 className='font-bold text-stone-500'>
+          ID: <span className='font-normal text-black'> {data?._id || 'N/A'} </span>
         </h6>
         <div className='flex justify-center my-6'>
-          <h5 className='font-bold'>
+          <h5 className='font-semibold text-gray-700' >
             Avatar: <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url : profileImg} alt="Profile" className='h-14 w-14 rounded-full ' />
           </h5>
         </div>
