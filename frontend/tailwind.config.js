@@ -15,7 +15,14 @@ export default {
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        baskerville: ['Baskerville', 'serif'],
+
       },
+
+      backgroundImage:{
+       'headphboy': "url('./assets/images/boyheadph.jpg')"
+       
+      }
     },
   },
   plugins: [require('flowbite/plugin')],

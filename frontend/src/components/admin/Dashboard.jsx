@@ -123,15 +123,15 @@ const lineOptions = {
 const Dashboard = () => {
   return (
     <>
-    <div className=' flex justify-evenly py-12'> 
-      <div className=''>
+    <div className=' flex flex-col sm:flex-row  justify-evenly py-12'> 
+      <div className='flex justify-center my-5'>
         <Pie data={pieData} options={pieOptions} key="pie-chart" />
       </div>
-       <div className='w-2/5'>
+       <div className='w-full sm:w-2/5'>
         <Line data={lineData} options={lineOptions} key="line-chart" />
       </div>
     </div>
-    <Link to="/admin/products" className='inline-block ms-12 mt-12 bg-blue-500 text-white p-2 border border-black'>View all products</Link>
+    <Link to="/admin/products" className='inline-block rounded-full ms-12 mt-12 bg-stone-700 text-white p-2 border border-black'>View all products</Link>
     </>
 
 

@@ -32,15 +32,15 @@ const ResetPassword = () => {
 
 
  return (
-   <div className="flex justify-center items-center min-h-screen bg-pink-200">
-     <div className="w-full max-w-md border-2 rounded-md border-blue-400">
+   <div className="flex justify-center items-center min-h-screen bg-stone-50">
+     <div className="w-full max-w-md rounded-md">
        <form
          className="bg-white shadow-md rounded px-8 pt-6 pb-8 "
          onSubmit={submitHandler}
        >
-         <h2 className="text-2xl mb-6 text-center text-pink-400 font-sans font-light">Reset Password</h2>
+         <h2 className="text-2xl mb-6 text-center text-orange-500 font-baskerville font-light">Reset Password</h2>
          <div className="mb-4">
-           <label htmlFor="password_field" className="block text-blue-400 text-sm font-medium mb-2">
+           <label htmlFor="password_field" className="block text-slate-400 text-sm font-medium mb-2">
              New Password
            </label>
            <input
@@ -54,7 +54,7 @@ const ResetPassword = () => {
            />
          </div>
          <div className="mb-4">
-           <label htmlFor="confirm_password_field" className="block text-blue-400 text-sm font-medium mb-2">
+           <label htmlFor="confirm_password_field" className="block text-slate-400 text-sm font-medium mb-2">
              Confirm Password
            </label>
            <input
@@ -69,7 +69,7 @@ const ResetPassword = () => {
          </div>
          <button
            type="submit"
-           className="bg-pink-500 hover:bg-blue-700 text-white font-light py-2 px-4 border-2 border-grey-600 rounded focus:outline-none focus:shadow-outline w-full"
+           className="bg-orange-500 hover:bg-black text-white font-light py-2 px-4 border-2 border-grey-600 rounded focus:outline-none focus:shadow-outline w-full"
            disabled={isLoading}
          >
            {isLoading ? 'Resetting...' : 'Reset Password'}

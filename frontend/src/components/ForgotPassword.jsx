@@ -25,12 +25,12 @@ const ForgotPassword = () => {
 
 
  return (
-  <div className="flex items-center justify-center min-h-screen bg-pink-200">
-  <div className="w-full max-w-md p-8 space-y-6 bg-white shadow  border-2 rounded-md border-blue-400">
+  <div className="flex items-center justify-center">
+  <div className="w-full max-w-md  p-8 mt-16 bg-white shadow   rounded-md">
     <form onSubmit={submitHandler} className="space-y-6">
-      <h2 className="text-2xl text-center text-pink-400 font-sans font-light">Forgot Password?</h2>
+      <h2 className="text-2xl text-center text-orange-500 font-sans font-light">Forgot Password?</h2>
       <div>
-        <label htmlFor="email_field" className="block text-sm font-light text-blue-400">
+        <label htmlFor="email_field" className="block text-sm font-light text-stone-400">
           Enter Email
         </label>
         <input
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
       <button
         id="forgot_password_button"
         type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-light text-white bg-pink-500 hover:bg-pink-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-light text-white bg-orange-500 hover:bg-orange-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         disabled={isLoading}
       >
         {isLoading ? "Sending..." : "Send Email"}

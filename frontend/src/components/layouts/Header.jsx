@@ -10,6 +10,7 @@ import { clearCart } from '../../redux/features/cartSlice';
 
 
 
+
 const Header = () => {
 
   
@@ -69,26 +70,30 @@ const logoutHandler = async() => {
 
   
   return (
-    <nav className="flex flex-col md:flex-row items-center justify-between p-5 bg-pink-300 text-white">
-      <div className="flex-shrink-0">
+    <nav className="flex flex-col sm:flex-row items-center sm:justify-between p-5 bg-white border-2 text-white">
+      <div className="flex-shrink-0 ">
         <Link to="/" className="flex items-center">
-        <h1 className='font-poppins font-semibold text-pink-500 me-6'>PINKHOP</h1>
+        <h1 className='font-poppins font-semibold text-neutral-500 ms-14 me-6 text-2xl'>SHOPPING</h1>
+
 
     
-          <img src="https://cdn3.iconfinder.com/data/icons/miscellaneous-236-solid/128/barbie_doll_adorable_beautiful_childhood_fashion-dolls_doll-girl-1024.png" alt="barbiegirl.logo" className="h-6" />
-          <img src="https://cdn1.iconfinder.com/data/icons/bootstrap-vol-3/16/hearts-1024.png" alt="" className='h-6' />
+          
           
          
           
         </Link>
       </div>
     
-      <div className="mt-4 md:mt-0 text-center relative">
+      <div className="mt-4 md:mt-0 text-center relative me-14">
         
            
         
           {(!isLoading && isAuthenticated) && <div className="relative  flex text-left">
-           <Link to="/cart"> <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/shopping_bag-1024.png" alt="SHOPPING" className='h-6 me-8'/> </Link>
+           <Link to="/cart">
+    <svg  className='me-6' height="40" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M14 36c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4zM2 4v4h4l7.19 15.17-2.7 4.9c-.31.58-.49 1.23-.49 1.93 0 2.21 1.79 4 4 4h24v-4H14.85c-.28 0-.5-.22-.5-.5 0-.09.02-.17.06-.24L16.2 26h14.9c1.5 0 2.81-.83 3.5-2.06l7.15-12.98c.16-.28.25-.61.25-.96 0-1.11-.9-2-2-2H10.43l-1.9-4H2zm32 32c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4z"/><path d="M0 0h48v48H0z" fill="none"/></svg>
+          
+           
+ </Link>
           
             <button
               className="flex items-center text-white focus:outline-none"
@@ -97,14 +102,14 @@ const logoutHandler = async() => {
              aria-expanded={dropdownOpen ? "true" : "false"}
               onClick={dropdownuAcBagla}
             >
-              <span className='flex text-pink-600 font-mono gap-4'>{user?.name}   <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} className='h-6 bg-white rounded-full'/> </span>
+              <span className='flex text-stone-500 text-lg font-poppins gap-4'>{user?.name}   <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} className='h-6 w-6 bg-white rounded-full border border-white'/> </span>
              
 
               <svg
                 className="ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
-                fill="currentColor"
+                fill="black"
                 aria-hidden="true"
               >
                 <path
@@ -170,7 +175,7 @@ className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
         
         {isLoading && <span>Loading...</span>}
        
- { !isAuthenticated && <Link to="/login" className="btn ms-4 bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" > Login </Link> }
+ { !isAuthenticated && <Link to="/login" className="btn ms-4 bg-stone-700 text-white px-4 py-2 rounded-md hover:bg-orange-500" > Login </Link> }
           
       </div>
     </nav>

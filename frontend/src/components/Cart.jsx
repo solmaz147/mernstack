@@ -20,7 +20,7 @@ const Cart = () => {
     <div className="cart">
       {cartItems.length === 0 && (
         <div className="flex flex-col justify-center items-center align-middle">
-          <h1 className="text-3xl align-middle font-bold flex justify-center text-pink-600 mt-6">
+          <h1 className="text-3xl align-middle font-bold flex justify-center text-stone-700 mt-6">
             Your cart is empty!
           </h1>
           <img src={emptyCart} alt="Empty Cart" className="h-1/3 ms-8" />
@@ -29,6 +29,8 @@ const Cart = () => {
           </Link>
         </div>
       )}
+
+      <h1 className="text-xl text-stone-500 text-center font-poppins  font-semibold mt-10">My Shopping Cart</h1>
 
       {cartItems.map((item) => {
         const totalPrice = item.price * item.quantity; // Calculate totalPrice for each item

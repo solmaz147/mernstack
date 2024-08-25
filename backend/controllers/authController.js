@@ -145,3 +145,16 @@ export const updateAvatar = catchAsynchErrors(async (req, res, next) => {
 
     res.status(201).json({imageUrl: req.file.path});
 });
+
+export const changeUsername = catchAsynchErrors(async(req,res,next)=>{
+    const user =await User.findById(req?.user?._id);
+    user.name = req.body.name||user.name
+    await user.save();
+    res.status(200).json({
+        name:req.body.name
+    })
+
+
+
+
+})
