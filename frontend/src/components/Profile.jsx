@@ -83,13 +83,16 @@ const Profile = () => {
       if (response.ok) {
         const result = await response.json();
         dispatch(setUser({ ...data, name: result.name }));
-        setIsEditingName(false); // Hide the input field after successful update
+        setIsEditingName(false); 
         Swal.fire({
           icon: 'success',
           title: 'Name Updated',
           text: 'Your username has been updated successfully.',
           confirmButtonText: 'Ok'
-        });
+        }).then(() => {
+          
+          window.location.reload();
+        });;
       } else {
         console.error('Failed to update username');
         Swal.fire({

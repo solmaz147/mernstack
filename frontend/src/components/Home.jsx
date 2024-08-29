@@ -6,6 +6,7 @@ import Loader from './layouts/Loader';
 
 
 
+
 const Home = () => {
   const { data: products, error, isLoading } = useGetProductsQuery();
   const umumidivRef = useRef(null);
@@ -24,12 +25,12 @@ const Home = () => {
 
   return (
    <>
-   <div className="bg-headphboy h-screen bg-no-repeat bg-cover w-screen flex flex-col justify-around" >
+   <div className="bg-headphboy  h-screen bg-no-repeat bg-cover w-screen flex flex-col justify-around" >
    
-    <h1 className='text-6xl text-stone-600 font-semibold font-baskerville ps-8  '>
+    <h1 className='text-6xl text-white font-semibold font-baskerville ps-8  '>
       Thanks for choosing us
     </h1>
-    <p className=' text-stone-700 font-light ps-10 text-xl leading-8' >
+    <p className=' text-white font-light ps-10 text-xl leading-8' >
       Stay in touch with us to be aware of latest tech products <br /> and high quality equipments.
       Dont miss the opportunity to make a deal ,  <br />using discounts and special offers!
     </p>

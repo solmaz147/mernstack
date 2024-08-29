@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const Product = ({ product }) => {
   return (
     <Link to={"/products/" + product._id}>
-      <div className="my-8 hover:scale-105 rounded-lg ">
+      <div className="sm:m-8 hover:scale-105 rounded-lg ">
         <div className="flex justify-center items-center bg-white border-stone-400 border-2">
           
             <img
-              className="rounded-t-lg h-60 w-max "
+              className="rounded-t-lg h-60 w-max p-8 "
               src={"http://localhost:3002/" + product.images[0].url}
               alt={product.name}
             />

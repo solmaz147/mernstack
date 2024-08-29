@@ -123,9 +123,11 @@ const lineOptions = {
 const Dashboard = () => {
   return (
     <>
-    <div className=' flex flex-col sm:flex-row  justify-evenly py-12'> 
+    <div className=' flex flex-col sm:flex-row  justify-evenly py-12 sm:items-center'> 
       <div className='flex justify-center my-5'>
+        <div className='m-6 sm:m-0'>
         <Pie data={pieData} options={pieOptions} key="pie-chart" />
+        </div>
       </div>
        <div className='w-full sm:w-2/5'>
         <Line data={lineData} options={lineOptions} key="line-chart" />
