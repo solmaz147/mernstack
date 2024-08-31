@@ -88,7 +88,7 @@ const logoutHandler = async() => {
         
            
         
-          {(!isLoading && isAuthenticated) && <div className="relative  flex text-left">
+          {(!isLoading && isAuthenticated) && <div className="relative  flex text-left items-center">
            
           
             <button
@@ -98,7 +98,7 @@ const logoutHandler = async() => {
              aria-expanded={dropdownOpen ? "true" : "false"}
               onClick={dropdownuAcBagla}
             >
-              <span className='flex text-stone-500 text-lg font-poppins gap-4'>{user?.name}   <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} className='h-6 w-6 bg-white rounded-full border border-white'/> </span>
+              <span className='flex text-stone-500 text-lg font-poppins gap-4 items-center'>{user?.name}   <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url  : profileImg} className='h-10 w-10 bg-white rounded-full border border-white'/> </span>
              
 
               <svg

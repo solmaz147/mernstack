@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {setIsAuthenticated, setUser} from "../features/userSlice"
 
+
 export const userApi = createApi({
     reducerPath:"userApi",
     baseQuery:fetchBaseQuery({baseUrl:"/api/v1"}),
@@ -41,7 +42,9 @@ export const userApi = createApi({
                 }
             }
         
-        })
+        }),
+
+       
         
 
     }),

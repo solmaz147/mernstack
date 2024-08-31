@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useGetMeQuery } from '../redux/api/userApi';
 import Loader from './layouts/Loader';
 import { setUser } from '../redux/features/userSlice';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Profile = () => {
@@ -14,6 +15,7 @@ const Profile = () => {
   const { data, isLoading, error } = useGetMeQuery();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (data && isAuthenticated) {
@@ -89,11 +91,9 @@ const Profile = () => {
           title: 'Name Updated',
           text: 'Your username has been updated successfully.',
           confirmButtonText: 'Ok'
-        }).then(() => {
+        })
           
-          window.location.reload();
-        });;
-      } else {
+         } else {
         console.error('Failed to update username');
         Swal.fire({
           icon: 'error',
@@ -112,25 +112,52 @@ const Profile = () => {
       });
     }
   };
-
-  return (
+return (
     <div className='flex justify-center items-center bg-stone-400'>
       <div className='border gap-y-2 p-14 bg-white'>
         <div className='flex justify-center'>
           <h1 className='text-3xl font-bold mb-8 text-stone-500'>Your Profile:</h1>
         </div>
         <h6 className='font-bold my-4 text-stone-500' >
-          Name: <span className='font-normal text-black'> {data?.name || 'N/A'} </span>
+          Name:  {isEditingName? (
+            <>
+            <div className='flex items-center'> 
+              <input
+                type='text'
+              
+                onChange={(e) => setNewName(e.target.value)}
+                className='border p-2 '
+                placeholder='Enter new name'
+              />
+         
+              <button
+                onClick={handleNameChange}
+                className='bg-green-500 p-2 text-white  border border-green-600 rounded flex'
+              >
+                Save Name
+              </button>
+              </div>
+            
+            </>
+          ):( <> <span className='font-normal text-black me-10'> {data?.name  || 'N/A'} </span>
+          <button
+          onClick={() => setIsEditingName(true)} // Show the input field when button is clicked
+          className='bg-stone-700 text-white p-2 border border-stone-800 rounded mb-4'
+        >
+          Change Name
+        </button> 
+        </>)}
+          
+         
         </h6>
-        <h6 className='font-bold text-stone-500'>
+       
+        <h6 className='font-bold text-stone-500 mb-8'>
           Email: <span className='font-normal text-black'> {data?.email || 'N/A'} </span>
         </h6>
         <h6 className='font-bold my-4 text-stone-500'>
           Role: <span className='font-normal text-black'> {data?.role || 'N/A'} </span>
         </h6>
-        <h6 className='font-bold text-stone-500'>
-          ID: <span className='font-normal text-black'> {data?._id || 'N/A'} </span>
-        </h6>
+        
         <div className='flex justify-center my-6'>
           <h5 className='font-semibold text-gray-700' >
             Avatar: <img src={user?.avatar?.url ? 'http://localhost:3002/' + user?.avatar?.url : profileImg} alt="Profile" className='h-14 w-14 rounded-full ' />
@@ -143,33 +170,8 @@ const Profile = () => {
             onChange={handleFileChange}
             className='border p-2 mb-4'
           />
-          <div className='flex justify-center'> 
-          <button
-            onClick={() => setIsEditingName(true)} // Show the input field when button is clicked
-            className='bg-stone-700 text-white p-2 border border-stone-800 rounded mb-4'
-          >
-            Change Name
-          </button>
-          </div>
-          {isEditingName && (
-            <>
-              <input
-                type='text'
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-                className='border p-2 mb-4'
-                placeholder='Enter new name'
-              />
-              <div className='flex justify-center'>
-              <button
-                onClick={handleNameChange}
-                className='bg-green-500 p-2 text-white  border border-green-600 rounded flex'
-              >
-                Save Name
-              </button>
-              </div>
-            </>
-          )}
+         
+         
         </div>
       </div>
     </div>

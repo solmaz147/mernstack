@@ -152,9 +152,9 @@ export const changeUsername = catchAsynchErrors(async(req,res,next)=>{
     await user.save();
     res.status(200).json({
         name:req.body.name
-    })
+    }) })
 
 
 
 
-})
+

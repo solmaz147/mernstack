@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeItem, clearCart } from "../redux/features/cartSlice";
 import { Link } from "react-router-dom";
 import emptyCart from "../assets/images/market.png";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -64,7 +65,7 @@ const Cart = () => {
                       </div>
                       <div className="text-end md:order-4 md:w-32">
                         <p className="text-base font-bold text-gray-900 dark:text-white">
-                          ${item.price}
+                         Price: ${item.price}
                         </p>
                         <p className="text-gray-800">
                           Total: <span className="text-red-600 font-bold">${totalPrice}</span>
@@ -110,24 +111,7 @@ const Cart = () => {
                           className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
                           onClick={() => handleRemoveItem(item.id)}
                         >
-                          <svg
-                            className="me-1.5 h-5 w-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M6 18 17.94 6M18 18 6.06 6"
-                            />
-                          </svg>
-                          Remove
+                          <FaRegTrashCan className="h-10" />
                         </button>
                       </div>
                     </div>
